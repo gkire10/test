@@ -1,0 +1,33 @@
+---
+title: "Test"
+author: "GK"
+date: "17 June 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r addmap, echo=FALSE}
+library(leaflet)
+
+m <- leaflet() 
+m <- setView(m, lng = -10, lat = 50, zoom = 3)
+m <- addTiles(m)
+cities <- c("London", "Paris", "Reykjavik")
+Lat <- c(51.508530,48.858093,64.128288)
+Lon<-c(-0.076132,2.294694,-21.827774)
+Capitals<- data.frame(cities, Lon,Lat)
+m<-addMarkers(m,lng=~Lon,data=Capitals, lat = ~Lat,layerId = ~cities)
+m
+
+```
+
+
